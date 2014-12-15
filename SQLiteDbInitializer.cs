@@ -5,10 +5,11 @@ using System.Text;
 using System.Data;
 using System.Data.Common;
 using TSVCEO.DataModelling;
+using System.Data.SQLite;
 
 namespace TSVCEO.DataModelling.SQLite
 {
-    public class SQLiteDbInitializer : SQLDbInitializer
+    public class SqliteDbInitializer : SQLDbInitializer
     {
         public override bool ColumnDataIsVariant { get { return true; } }
         public override SQLQuoteType IdentifierQuoteType { get { return SQLQuoteType.Quote; } }
@@ -341,6 +342,11 @@ namespace TSVCEO.DataModelling.SQLite
             }
 
             return tables.Values;
+        }
+
+        public override DbConnection Connect(string connstring)
+        {
+            return new SQLiteConnection(connstring);
         }
     }
 }
