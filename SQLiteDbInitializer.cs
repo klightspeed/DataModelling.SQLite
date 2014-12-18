@@ -348,5 +348,15 @@ namespace TSVCEO.DataModelling.SQLite
         {
             return new SQLiteConnection(connstring);
         }
+
+        public override DbProviderFactory GetEntityFrameworkProviderFactory()
+        {
+            return new System.Data.SQLite.EF6.SQLiteProviderFactory();
+        }
+
+        public override DbProviderFactory GetLinqToSqlProviderFactory()
+        {
+            return new System.Data.SQLite.Linq.SQLiteProviderFactory();
+        }
     }
 }
